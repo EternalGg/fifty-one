@@ -20,7 +20,7 @@ rows = grouped_purchased['symptom'].astype('category').cat.codes
 cols = grouped_purchased['diagnose'].astype('category').cat.codes
 # # # Get the associated column indices
 purchases_sparse = sparse.csr_matrix((quantity, (rows, cols)), shape=(len(customers), len(products)))
-
+print(np.shape(purchases_sparse))
 ddx.groupby(['diagnose']).mean(),pd.DataFrame(customers)
 basket_sets = pd.pivot_table(ddx, index='symptom',columns='diagnose',values='wei')
 item_lookup = pd.DataFrame( list( basket_sets.columns ) ,columns=['StockCode'])# Only get unique item/description pairs
