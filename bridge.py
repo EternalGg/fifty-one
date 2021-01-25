@@ -1,16 +1,27 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import module as module
+import trick.modules as module
 import numpy.matlib
 import matplotlib.ticker as mtick
-import linear_regression
+import classics_module.linear_regression
+import classics_module.logistic_regression
 
-model_dict = {'linear_regression': linear_regression}
+supervised_learning_dict = {'linear_regression': classics_module.linear_regression,
+                            'logistic_regression': classics_module.logistic_regression,
+                            }
 
-def fit(X,Y,model='',alpha=0.01,maxloop=0.1,epsilon=0):
-    a, b, c = model_dict[model].fit(alpha, maxloop , epsilon, X, Y)
+def fit(X,Y,model='',alpha=0.01,maxloop=0.1,epsilon=0 , module='' ,optimizers=''):
+    a, b, c = supervised_learning_dict[model].fit(alpha, maxloop, epsilon, X, Y, module, optimizers)
 
     return a,b,c
+
+# def fit(X,Y,model='',alpha=0.01,maxloop=0.1,epsilon=0 , module='' ,optimizers='', activation=''):
+#     a, b, c = supervised_learning_dict[model].fit(alpha, maxloop, epsilon, X, Y, module, optimizers ,activation)
+#
+#     return a,b,c
+#
+
+
 # fig, ax = plt.subplots()
 # for alpha in range(2):
 #     ax.plot(np.arange(np.shape(c[0])[0]), c[alpha])
